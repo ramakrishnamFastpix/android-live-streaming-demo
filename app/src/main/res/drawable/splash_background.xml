@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Gradient Background -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#1A1A33"
+                android:centerColor="#33194D"
+                android:endColor="#1A3366"
+                android:angle="135"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- FastPix Logo Placeholder - White Circle -->
+    <item
+        android:left="160dp"
+        android:right="160dp"
+        android:top="300dp"
+        android:bottom="300dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- FastPix Text Placeholder -->
+    <item
+        android:left="140dp"
+        android:right="140dp"
+        android:top="320dp"
+        android:bottom="280dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00FF88" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+</layer-list>

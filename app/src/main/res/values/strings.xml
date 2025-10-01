@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FastPix Live</string>
+    <string name="fastpix_studio">FastPix Studio</string>
+    <string name="professional_streaming">Professional Live Streaming Platform</string>
+    <string name="stream_configuration">STREAM CONFIGURATION</string>
+    <string name="video_quality_settings">VIDEO QUALITY SETTINGS</string>
+    <string name="enter_stream_key">Enter your stream key here</string>
+    <string name="start_live_streaming">🎬 START LIVE STREAMING</string>
+    <string name="quality_1080p">1080p</string>
+    <string name="quality_720p">720p</string>
+    <string name="quality_540p">540p</string>
+    <string name="quality_360p">360p</string>
+    <string name="go_live">Go Live!</string>
+    <string name="stop_streaming">Stop Streaming!</string>
+    <string name="connecting">Connecting...</string>
+    <string name="retrying">Retrying...</string>
+    <string name="fps_label">fps</string>
+    <string name="kbps_label">kbps</string>
+    <string name="back_camera">Back Camera</string>
+    <string name="front_camera">Front Camera</string>
+    <string name="close_stream">Close</string>
+    <string name="connection_failed">Connection Failed</string>
+    <string name="auth_error">Authentication Error</string>
+    <string name="live_indicator">🔴 LIVE!</string>
+    <string name="disconnected">Disconnected</string>
+</resources>

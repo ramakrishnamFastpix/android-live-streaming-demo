@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins and Padding -->
+    <dimen name="margin_standard">24dp</dimen>
+    <dimen name="margin_small">16dp</dimen>
+    <dimen name="margin_large">32dp</dimen>
+    <dimen name="padding_standard">16dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_title">32sp</dimen>
+    <dimen name="text_size_subtitle">16sp</dimen>
+    <dimen name="text_size_body">14sp</dimen>
+    <dimen name="text_size_button">16sp</dimen>
+
+    <!-- Button Heights -->
+    <dimen name="button_height_standard">48dp</dimen>
+    <dimen name="button_height_large">60dp</dimen>
+
+    <!-- Corner Radius -->
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_medium">12dp</dimen>
+    <dimen name="corner_radius_large">20dp</dimen>
+    <dimen name="corner_radius_xlarge">30dp</dimen>
+</resources>
