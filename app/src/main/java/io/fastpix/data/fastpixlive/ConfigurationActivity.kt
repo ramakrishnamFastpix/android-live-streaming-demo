@@ -26,6 +26,7 @@ class ConfigurationActivity : AppCompatActivity() {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA,
         )
+
     }
 
     private lateinit var streamKeyField: TextInputEditText
@@ -187,7 +188,7 @@ class ConfigurationActivity : AppCompatActivity() {
             // Add smooth transition
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
 
-        } catch (e: Exception) {
+        } catch (e: RuntimeException) {
             Log.e(TAG, "Error starting LiveStreamActivity: ${e.message}")
             showToast("Error starting live stream: ${e.message}")
         } finally {

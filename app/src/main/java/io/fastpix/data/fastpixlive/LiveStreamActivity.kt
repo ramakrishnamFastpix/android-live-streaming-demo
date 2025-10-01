@@ -1,11 +1,7 @@
 package io.fastpix.data.fastpixlive
 
 import android.content.pm.ActivityInfo
-import android.hardware.Camera
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
@@ -27,6 +23,9 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
 
         const val intentExtraStreamKey = "STREAMKEY"
         const val intentExtraPreset = "PRESET"
+        private const val ZERO_KBPS = "0 kbps"
+        private const val ZERO_FPS = "0 fps"
+        private const val GO_LIVE_TEXT = "Go Live!"
     }
 
     enum class Preset(val bitrate: Int, val width: Int, val height: Int, val frameRate: Int) {
@@ -66,7 +65,6 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
 
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
-        Log.i(TAG, "📱 FastPix LiveStream started")
     }
 
     private fun initializeViews() {
@@ -85,8 +83,8 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
 
         // ✅ MUX-STYLE - Initial state
         connectionStatus.setBackgroundResource(R.drawable.connection_dot_red)
-        bitrateLabel.text = "0 kbps"
-        fpsLabel.text = "0 fps"
+        bitrateLabel.text = ZERO_KBPS
+        fpsLabel.text = ZERO_FPS
 
         updateButtonColorsInstant()
     }
@@ -98,7 +96,6 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
 
             val callback = object : FpsListener.Callback {
                 override fun onFps(fps: Int) {
-                    Log.i(TAG, "FPS: $fps")
                     runOnUiThread {
                         fpsLabel.text = "$fps fps"
                     }
@@ -106,32 +103,25 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
             }
             rtmpCamera.setFpsListener(callback)
 
-            Log.i(TAG, "✅ RTMP Camera initialized (Mux-style)")
-        } catch (e: Exception) {
-            Log.e(TAG, "❌ Failed to initialize camera: ${e.message}")
-            showMuxToast("Camera initialization failed")
+        } catch (e: RuntimeException) {
         }
     }
 
     private fun setupClickListeners() {
         closeButton.setOnClickListener {
-            Log.i(TAG, "❌ Close button tapped")
             finish()
         }
 
         backCameraButton.setOnClickListener {
-            Log.i(TAG, "📷 Back camera button tapped")
             changeCameraClicked()
         }
 
         frontCameraButton.setOnClickListener {
-            Log.i(TAG, "🤳 Front camera button tapped")
             changeCameraClicked()
         }
     }
 
     private fun changeCameraClicked() {
-        Log.i(TAG, "Change Camera Button tapped")
         rtmpCamera.switchCamera()
 
         isBackCamera = !isBackCamera
@@ -158,25 +148,22 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
         intent.extras?.let { extras ->
             streamKey = extras.getString(intentExtraStreamKey)
             preset = extras.getSerializable(intentExtraPreset) as? Preset
-            Log.i(TAG, "🔑 Stream Key: ${streamKey?.take(8)}...")
-            Log.i(TAG, "⚙️ Preset: ${preset?.width}x${preset?.height}@${preset?.frameRate}fps")
         }
     }
 
 
 
 
-    fun goLiveClicked(view: View) {
-        Log.i(TAG, "Go Live Button tapped")
+    fun goLiveClicked() {
 
         if (liveDesired) { goLiveButton.text = "Stopping..."
             Thread {
                 rtmpCamera.stopStream()
                 runOnUiThread {
-                    goLiveButton.text = "Go Live!"
+                    goLiveButton.text = GO_LIVE_TEXT
                     connectionStatus.setBackgroundResource(R.drawable.connection_dot_red)
-                    bitrateLabel.text = "0 kbps"
-                    fpsLabel.text = "0 fps"
+                    bitrateLabel.text = ZERO_KBPS
+                    fpsLabel.text = ZERO_FPS
                 }
             }.start()
             liveDesired = false
@@ -208,7 +195,7 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
                     true // Stereo
                 )
 
-                val streamUrl = "$rtmpEndpoint/$streamKey"
+                val streamUrl = "$rtmpEndpoint/${streamKey ?: ""}"
                 rtmpCamera.startStream(streamUrl)
                 liveDesired = true
                 goLiveButton.text = "Connecting... (Cancel)"
@@ -216,14 +203,13 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
         }
     }
 
-    private fun showMuxToast(message: String) {
+    private fun showToast(message: String) {
         val toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, 100)
         toast.show()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder) {
-        Log.i(TAG, "🖥️ Surface created")
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
@@ -244,31 +230,26 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
 
         rtmpCamera.startPreview(1920, 1080)
 
-        Log.i(TAG, "🖥️ Surface changed: ${width}x${height}")
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
-        Log.i(TAG, "🖥️ Surface destroyed")
     }
 
     override fun onConnectionSuccess() {
         runOnUiThread {
             goLiveButton.text = "Stop Streaming!"
             connectionStatus.setBackgroundResource(R.drawable.connection_dot_green)
-            showMuxToast("RTMP Connection Successful!")
+            showToast("RTMP Connection Successful!")
         }
-        Log.i(TAG, "RTMP Connection Success")
     }
 
     override fun onConnectionStarted(url: String) {
-        Log.i(TAG, "RTMP Connection Started: $url")
         runOnUiThread {
             goLiveButton.text = "Connecting... (Cancel)"
         }
     }
 
     override fun onConnectionFailed(reason: String) {
-        Log.w(TAG, "RTMP Connection Failure: $reason")
         runOnUiThread {
             goLiveButton.text = "Reconnecting... (Cancel)"
             connectionStatus.setBackgroundResource(R.drawable.connection_dot_red)
@@ -276,18 +257,16 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
     }
 
     override fun onNewBitrate(bitrate: Long) {
-        Log.d(TAG, "RTMP Bitrate Changed: ${bitrate / 1024}")
         runOnUiThread {
             bitrateLabel.text = "${bitrate / 1024} kbps"
         }
     }
 
     override fun onDisconnect() {
-        Log.i(TAG, "RTMP Disconnect")
         runOnUiThread {
-            bitrateLabel.text = "0 kbps"
-            fpsLabel.text = "0 fps"
-            goLiveButton.text = "Go Live!"
+            bitrateLabel.text = ZERO_KBPS
+            fpsLabel.text = ZERO_FPS
+            goLiveButton.text =GO_LIVE_TEXT
             connectionStatus.setBackgroundResource(R.drawable.connection_dot_red)
         }
         liveDesired = false
@@ -295,9 +274,8 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
     }
 
     override fun onAuthError() {
-        Log.w(TAG, "RTMP Auth Error")
-        runOnUiThread {
-            goLiveButton.text = "Go Live!"
+      runOnUiThread {
+            goLiveButton.text = GO_LIVE_TEXT
             connectionStatus.setBackgroundResource(R.drawable.connection_dot_red)
         }
         liveDesired = false
@@ -305,35 +283,30 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
     }
 
     override fun onAuthSuccess() {
-        Log.i(TAG, "RTMP Auth Success")
     }
 
-    override fun onTouch(view: View?, event: MotionEvent?): Boolean {
-        return false
-    }
+    override fun onTouch(view: View?, event: MotionEvent?): Boolean=false
 
     override fun onDestroy() {
         super.onDestroy()
         if (liveDesired) {
             try {
                 rtmpCamera.stopStream()
-            } catch (e: Exception) {
-                Log.e(TAG, "❌ Error in onDestroy: ${e.message}")
+            } catch (e: RuntimeException) {
+
             }
         }
-        Log.i(TAG, "🏁 Activity destroyed")
+
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Log.i(TAG, "⬅️ Back button pressed")
 
         if (liveDesired) {
             try {
                 rtmpCamera.stopStream()
                 liveDesired = false
-            } catch (e: Exception) {
-                Log.e(TAG, "❌ Error stopping stream: ${e.message}")
+            } catch (e: RuntimeException) {
             }
         }
         finish()

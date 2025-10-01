@@ -52,8 +52,9 @@ class SplashActivity : AppCompatActivity() {
             }
         }
 
-        handler?.postDelayed(navigationRunnable!!, SPLASH_DURATION)
-    }
+        navigationRunnable?.let { runnable ->
+            handler?.postDelayed(runnable, SPLASH_DURATION)
+        }    }
 
     private fun startSplashAnimations() {
         val logoImage = findViewById<ImageView>(R.id.splashLogo)
