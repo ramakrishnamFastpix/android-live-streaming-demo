@@ -2,6 +2,8 @@ package io.fastpix.data.fastpixlive
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.widget.Button
 import android.widget.ImageView
@@ -112,21 +114,45 @@ class LiveStreamActivity : AppCompatActivity(), SurfaceHolder.Callback, ConnectC
             finish()
         }
 
+        goLiveButton.setOnClickListener {
+            goLiveClicked()
+        }
+
         backCameraButton.setOnClickListener {
-            changeCameraClicked()
+            if (!isBackCamera) {
+                isBackCamera = true
+                updateButtonColorsInstant()
+
+                Thread {
+                    try {
+                        rtmpCamera.switchCamera()
+                    } catch (e: Exception) {
+
+                    }
+                }.start()
+            }
         }
 
         frontCameraButton.setOnClickListener {
-            changeCameraClicked()
+            if (isBackCamera) {
+
+                isBackCamera = false
+                updateButtonColorsInstant()
+
+
+                Thread {
+                    try {
+                        rtmpCamera.switchCamera()
+                    } catch (e: Exception) {
+
+                    }
+                }.start()
+            }
         }
     }
 
-    private fun changeCameraClicked() {
-        rtmpCamera.switchCamera()
 
-        isBackCamera = !isBackCamera
-        updateButtonColorsInstant()
-    }
+
 
     private fun updateButtonColorsInstant() {
         if (isBackCamera) {

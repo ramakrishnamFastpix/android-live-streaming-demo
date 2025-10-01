@@ -132,7 +132,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/start_streaming_button"
         android:elevation="16dp"
-        android:onClick="goLiveClicked"
+
         android:stateListAnimator="@null"
         android:text="Go Live"
         android:textAllCaps="false"

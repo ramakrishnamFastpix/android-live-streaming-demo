@@ -162,7 +162,7 @@
             android:layout_weight="1"
             android:background="@drawable/start_streaming_button"
             android:elevation="8dp"
-            android:onClick="goLiveClicked"
+
             android:paddingHorizontal="20dp"
             android:stateListAnimator="@null"
             android:text="Go Live!"
