@@ -27,13 +27,6 @@
             android:src="@drawable/fastpix_logo" />
 
 
-
-
     </LinearLayout>
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

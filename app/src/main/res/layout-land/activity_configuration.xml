@@ -1,262 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background">
+    android:fillViewport="true">
 
-    <!-- Left Side - Branding Section -->
-    <LinearLayout
-        android:id="@+id/brandingSection"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <!-- Logo with iOS 26 Ultra Glass Background -->
-        <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/ultra_glass_card"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/logoIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:contentDescription="FastPix Logo"
-                android:src="@drawable/baseline_videocam_24"
-                app:tint="#00FF88" />
-
-        </LinearLayout>
-
-        <!-- Title -->
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="FastPix Studio"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <!-- Subtitle -->
-        <TextView
-            android:id="@+id/subtitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="Professional Live Streaming Platform"
-            android:textColor="@color/text_secondary"
-            android:textSize="14sp" />
-
-        <!-- Feature Icons Row - iOS 26 Ultra Glass -->
-
-
-    </LinearLayout>
-
-    <!-- Vertical Guideline (40% from left) -->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.4" />
+        android:background="@drawable/gradient_background"
+        android:fitsSystemWindows="true"
+        android:minHeight="400dp">
 
-    <!-- Right Side - Configuration Section -->
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginVertical="20dp"
-        android:orientation="vertical"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline">
-
-        <!-- Configuration Header -->
+        <!-- Left Side - Branding Section -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <View
-                android:layout_width="3dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/accent_line" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="STREAM CONFIGURATION"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <!-- Stream Key Card - iOS 26 Ultra Glass -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/ultra_glass_card"
+            android:id="@+id/brandingSection"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:padding="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <!-- Logo with iOS 26 Ultra Glass Background -->
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/ultra_glass_card"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/logoIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="FastPix Logo"
+                    android:src="@drawable/baseline_videocam_24"
+                    app:tint="#00FF88" />
+
+            </LinearLayout>
+
+            <!-- Title -->
             <TextView
+                android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="🔑 Stream Key"
+                android:text="FastPix Studio"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/streamKeyInputLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="#20FFFFFF"
-                app:boxBackgroundMode="filled"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp"
-                app:boxStrokeColor="#50FFFFFF"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/streamKeyField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter your stream key here"
-                    android:inputType="text"
-                    android:paddingVertical="12dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/quality_selector_background"
-                    android:textColorHint="#8A8A8A"
-                    android:textSize="14sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <!-- Quality Selection Card - iOS 26 Ultra Glass -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/ultra_glass_card"
-            android:orientation="vertical"
-            android:padding="18dp">
-
+            <!-- Subtitle -->
             <TextView
+                android:id="@+id/subtitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="📹 Video Quality"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Professional Live Streaming Platform"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
 
-            <!-- Quality Buttons in Single Row -->
+        </LinearLayout>
+
+        <!-- Vertical Guideline (40% from left) -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <!-- Right Side - Configuration Section -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginVertical="20dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Configuration Header -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal"
-                android:background="@drawable/quality_selector_background"
-                android:layout_marginBottom="8dp">
+                android:gravity="center_vertical">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/p1080p"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/quality_button_selected"
-                    android:stateListAnimator="@null"
-                    android:text="1080p"
-                    android:textAllCaps="false"
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="18dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/accent_line" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STREAM CONFIGURATION"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/p720p"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginHorizontal="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/quality_button_unselected"
-                    android:stateListAnimator="@null"
-                    android:text="720p"
-                    android:textAllCaps="false"
-                    android:textColor="#8A8A8A"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/p540p"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginHorizontal="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/quality_button_unselected"
-                    android:stateListAnimator="@null"
-                    android:text="540p"
-                    android:textAllCaps="false"
-                    android:textColor="#8A8A8A"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/p360p"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/quality_button_unselected"
-                    android:stateListAnimator="@null"
-                    android:text="360p"
-                    android:textAllCaps="false"
-                    android:textColor="#8A8A8A"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
+            <!-- Stream Key Card - iOS 26 Ultra Glass -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/ultra_glass_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="🔑 Stream Key"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/streamKeyInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:boxBackgroundColor="#20FFFFFF"
+                    app:boxBackgroundMode="filled"
+                    app:boxCornerRadiusBottomEnd="8dp"
+                    app:boxCornerRadiusBottomStart="8dp"
+                    app:boxCornerRadiusTopEnd="8dp"
+                    app:boxCornerRadiusTopStart="8dp"
+                    app:boxStrokeColor="#50FFFFFF"
+                    app:hintEnabled="false">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/streamKeyField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter your stream key here"
+                        android:inputType="text"
+                        android:paddingVertical="12dp"
+                        android:textColor="@color/white"
+                        android:background="@drawable/quality_selector_background"
+                        android:textColorHint="#8A8A8A"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <!-- Quality Selection Card - iOS 26 Ultra Glass -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ultra_glass_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:text="📹 Video Quality"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Quality Buttons in Single Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/quality_selector_background"
+                    android:layout_marginBottom="8dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/p1080p"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/quality_button_selected"
+                        android:stateListAnimator="@null"
+                        android:text="1080p"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/p720p"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/quality_button_unselected"
+                        android:stateListAnimator="@null"
+                        android:text="720p"
+                        android:textAllCaps="false"
+                        android:textColor="#8A8A8A"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/p540p"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/quality_button_unselected"
+                        android:stateListAnimator="@null"
+                        android:text="540p"
+                        android:textAllCaps="false"
+                        android:textColor="#8A8A8A"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/p360p"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/quality_button_unselected"
+                        android:stateListAnimator="@null"
+                        android:text="360p"
+                        android:textAllCaps="false"
+                        android:textColor="#8A8A8A"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Start Streaming Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/startCamera"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/start_streaming_button"
+                android:drawablePadding="8dp"
+                android:elevation="8dp"
+                android:onClick="startCamera"
+                android:paddingHorizontal="20dp"
+                android:stateListAnimator="@null"
+                android:text="🎬 START LIVE STREAMING"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
-        <!-- Start Streaming Button -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/startCamera"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@drawable/start_streaming_button"
-            android:drawablePadding="8dp"
-            android:elevation="8dp"
-            android:onClick="startCamera"
-            android:paddingHorizontal="20dp"
-            android:stateListAnimator="@null"
-            android:text="🎬 START LIVE STREAMING"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

@@ -20,7 +20,8 @@ class ConfigurationActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "FastPixLive"
-        private const val DEFAULT_STREAM_KEY = "bce094dbaef48172f155014285ef6a8dk4f158cae1a6f6416a7d16d61d556f0ab"
+        private const val DEFAULT_STREAM_KEY = "757966116093ba4dc94162c0a662a8bbk06b9cd763b7458c7460342faeda23a75"
+
 
         private val PERMISSIONS = arrayOf(
             Manifest.permission.RECORD_AUDIO,

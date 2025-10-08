@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/black"
+    android:fitsSystemWindows="true">
 
     <!-- Full Screen Camera Preview -->
     <SurfaceView
@@ -16,13 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Top Controls - Glass Overlay -->
+    <!-- Top Controls - Glass Overlay with System Bar Padding -->
     <LinearLayout
         android:id="@+id/topControlsContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="40dp"
         android:background="@drawable/ultra_glass_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -93,13 +95,14 @@
 
     </LinearLayout>
 
-    <!-- Bottom Controls - Glass Overlay -->
+    <!-- Bottom Controls - Glass Overlay with Navigation Bar Padding -->
     <LinearLayout
         android:id="@+id/bottomControlBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="30dp"
         android:background="@drawable/ultra_glass_card"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -162,7 +165,6 @@
             android:layout_weight="1"
             android:background="@drawable/start_streaming_button"
             android:elevation="8dp"
-
             android:paddingHorizontal="20dp"
             android:stateListAnimator="@null"
             android:text="Go Live!"
